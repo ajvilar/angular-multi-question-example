@@ -1,0 +1,20 @@
+<section class="container-fluid interview">
+  <div class="row" *ngFor="let question of questions; let i = index">
+    <div *ngIf="question.show">
+      <div class="col-md-7 text-right">
+        <label for="labelAnswer{{i}}">
+          <span class="label label-default"
+                style="font-weight:bold;font-size:larger">{{question.text}}</span>
+        </label>
+      </div>
+      <div class="col-md-5">
+        <mat-radio-group class="ans-radio-group" aria-labelledby="labelAnswer{{i}}" [(ngModel)]="question.choice" (change)="onChange()">
+          <mat-radio-button class="ans-radio-button" name="selectedAnswer{{i}}"                         
+              *ngFor="let answers of question.options" [value]="answers.key">
+              {{ answers.value }}
+            </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+</section>
