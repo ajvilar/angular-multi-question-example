@@ -1,20 +1,101 @@
-<section class="container-fluid interview">
-    <div class="row" *ngFor="let question of questions; let i = index">
-      <div *ngIf="question.show">
-        <div class="col-md-7 text-right">
-          <label for="labelAnswer{{i}}">
-            <span class="label label-default"
-                  style="font-weight:bold;font-size:larger">{{question.text}}</span>
-          </label>
-        </div>
-        <div class="col-md-5">
-          <mat-radio-group class="ans-radio-group" aria-labelledby="labelAnswer{{i}}" [(ngModel)]="question.choice" (change)="onChange()">
-            <mat-radio-button class="ans-radio-button" name="selectedAnswer{{i}}"                         
-                *ngFor="let answers of question.options" [value]="answers.key">
-                {{ answers.value }}
-              </mat-radio-button>
-          </mat-radio-group>
-        </div>
+<section class="container-fluid">
+  <!--elevator-->
+  <div *ngIf="questions[0].show || questions[0].show">
+    <div class="row">
+      <div class="col-md-7 text-right">
+        <br />
+        <label class="question">(Observe): Does this building have an elevator?</label>
+      </div>
+      <div class="col-md-5 ">
+        <br />
+        <mat-radio-group class="ans-radio-group" [(ngModel)]="questions[0].choice" (change)="onChange()">
+          <mat-radio-button class="ans-radio-button"
+           (change)="onChange()"
+            *ngFor="let answers of questions[0].options" [value]="answers.key">
+            {{ answers.value }}
+          </mat-radio-button>
+        </mat-radio-group>
       </div>
     </div>
-  </section>
+  </div>
+  <!--eligibility !-->
+  <div *ngIf="questions[1].show || questions[1].show">
+    <div class="row">
+      <div class="col-md-7 text-right">
+        <br />
+        <label class="question">
+          <span>
+            (Observe): Is this
+            house or apartment eligible?
+          </span>
+        </label>
+      </div>
+      <div class="col-md-5">
+        <br />
+        <mat-radio-group class="ans-radio-group" [(ngModel)]="questions[1].choice" (change)="onChange()">
+          <mat-radio-button class="ans-radio-button" (change)="onChange()" *ngFor="let answers of questions[1].options"
+            [value]="answers.key">
+            {{ answers.value }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+  <!-- observe public housing-->
+  <div *ngIf="questions[2].show">
+    <div class="row">
+      <div class="col-md-7 text-right">
+        <br />
+        <label id="radAnswer">
+          <span class="question">
+            (Observe): Is this
+          house or apartment?
+          </span>
+        </label>
+      </div>
+      <div class="col-md-5">
+        <br />
+        <mat-radio-group class="ans-radio-group" [(ngModel)]="questions[2].choice " (change)="onChange()">
+          <mat-radio-button class="ans-radio-button" aria-labelledby="radAnswer"
+            (change)="onChange()" *ngFor="let answers of questions[2].options" [value]="answers.key">
+            {{ answers.value }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+
+  <!--tenure-->
+  <div class="row" *ngIf="questions[3].show">
+    <div class="col-md-7 text-right">
+      <br />
+      <label id="TenQues">
+        <span class="label label-default" style="font-weight:bold;font-size:medium">
+          <span class="question">
+            Is this {{dwellingType}} occupied by the owner or its rented?
+          </span>
+
+        </span>
+      </label>
+    </div>
+    <div class="col-md-5">
+      <br />
+      <mat-radio-group class="ans-radio-group" aria-labelledby="TenQues" [(ngModel)]="questions[3].choice"
+        (change)="onChange()">
+        <mat-radio-button class="ans-radio-button" #button name="lblTenQues" (change)="onChange()"
+          *ngFor="let answers of questions[3].options" [value]="answers.key">
+          {{ answers.value }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div>
+    <ul>
+      <li>{{questions[0].choice}}</li>
+      <li>{{questions[1].choice}}</li>
+      <li>{{questions[2].choice}}</li>
+      <li>{{questions[3].choice}}</li>
+    </ul>
+  </div>
+</section> 
+
