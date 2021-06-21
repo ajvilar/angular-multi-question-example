@@ -1,5 +1,15 @@
 import { Component, Input, OnInit, VERSION } from '@angular/core';
 
+interface IOptions {
+  key: string;
+  value: string;
+} 
+
+interface IQuestionMetaInfo {
+  options: Array<IOptions>;
+  rules?: any;
+  preserveHiddenValue?: boolean;
+}
 
 const yesNoOptions: Array<IOptions> = [
   { key: 'Y', value: 'Yes' },
@@ -12,29 +22,28 @@ const yesNoDont_KnownOptions: Array<IOptions> = [
   { key: 'U', value: "Don't Know" },
 ];
 
-
-
-interface IOptions {
-  key: string;
-  value: string;
-} 
-
-interface IQuestionInfo {
-  key: string;
-  choice: string;
-  options: Array<IOptions>;
-  show: boolean;
-  rules?: any;
-  saveHiddenValue?: boolean;
-}
-
 @Component({
   selector: 'multi-question',
   templateUrl: './multi-question.component.html',
   styleUrls: [ './multi-question.component.css' ]
 })
 export class MultiQuestionComponent implements OnInit  {
-  public name = 'Angular ' + VERSION.major;
+  @Input()
+  public questionDefinitions: Map<string, IQuestionMetaInfo>;
+
+  public questionChoices: Array<String>;
+  public questionVisible: Array<boolean>;
+
+  public constructor() {
+    this.questionDefinitions = new Map();
+    this.questionChoices = [];
+    this.questionVisible = [];
+  }
+
+  public ngOnInit() {}
+}
+
+/* 
   public dwellingType = '';
   public questions: Array<IQuestionInfo> = [
     {
@@ -166,4 +175,5 @@ export class MultiQuestionComponent implements OnInit  {
     const  isHouse = false; // 
     this.dwellingType = (isHouse)?'house':'appartment';
   }
-}
+} 
+*/
