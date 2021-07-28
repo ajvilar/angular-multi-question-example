@@ -14,13 +14,14 @@ const yesNoDont_KnownOptions: Array<IOptions> = [
 
 
 
-interface IOptions {
+export interface IOptions {
   key: string;
   value: string;
 } 
 
-interface IQuestionInfo {
+export interface IQuestionInfo {
   key: string;
+  text:string;
   choice: string;
   options: Array<IOptions>;
   show: boolean;
@@ -38,11 +39,11 @@ export class MultiQuestionComponent implements OnInit  {
   public dwellingType = '';
   public questions: Array<IQuestionInfo> = [
     {
-      key: '1', choice: '', options: yesNoOptions, show: true,
+      key: '1', text: 'first question', choice: '', options: yesNoOptions, show: true,
       rules: {always: true}
     },
     {
-      key: '2', choice: '', options: yesNoDont_KnownOptions, show: true,
+      key: '2', text: 'second question', choice: '', options: yesNoDont_KnownOptions, show: false,
       rules: {
         dependsOn: ['1'], // only show this question if the following are visible
         choiceRules: {
@@ -51,7 +52,7 @@ export class MultiQuestionComponent implements OnInit  {
       }
     },
     {
-      key: '3', choice: '', options: yesNoOptions, show: true,
+      key: '3', text: 'third question', choice: '', options: yesNoOptions, show: false,
       rules: {
         dependsOn: ['2'], // only show this question if the following are visible
         choiceRules: {
@@ -61,6 +62,7 @@ export class MultiQuestionComponent implements OnInit  {
     },
     {
       key: '4',
+      text: 'fourth question', 
       choice: '', 
       options: yesNoOptions,
       rules: {
@@ -69,10 +71,10 @@ export class MultiQuestionComponent implements OnInit  {
           '3': ['N'],  // only show if question '3' has a value of 'N'
         },
       },
-      saveHiddenValue: true,
-      show: true
+      show: false
     }
   ];
+
   public saveHiddenValues: boolean = false;
   
   constructor() {
