@@ -1,4 +1,4 @@
-import { IOptions, IQuestionInfo } from './components/multi-question/multi-question.component';
+import { IOptions, IQuestionMetaInfo } from './multiquestion-utility';
   
 const yesNoOptions: Array<IOptions> = [
   { key: 'Y', value: 'Yes' },
@@ -11,31 +11,31 @@ const yesNoDont_KnownOptions: Array<IOptions> = [
   { key: 'U', value: "Don't Know" },
 ];
 
-export const testQuestions: Array<IQuestionInfo> = [
+export const questions: Array<IQuestionMetaInfo> = [
     {
-      key: '1', text: 'first question', choice: '', options: yesNoOptions, show: true,
+      key: 'question1', text: 'first question', choice: '', options: yesNoOptions, show: true,
       rules: {always: true}
     },
     {
-      key: '2', text: 'second question', choice: '', options: yesNoDont_KnownOptions, show: true,
+      key: 'question2', text: 'second question', choice: '', options: yesNoDont_KnownOptions, show: false,
       rules: {
-        dependsOn: ['1'], // only show this question if the following are visible
+        dependsOn: ['question1'], // only show this question if the following are visible
         choiceRules: {
-          '1': ['N'],  // only show if question '3' has a value of 'N'
+          'question1': ['Y'],  // only show if question 'question1' has a value of 'Y'
         },
       }
     },
     {
-      key: '3', text: 'third question', choice: '', options: yesNoOptions, show: true,
+      key: 'question3', text: 'third question', choice: '', options: yesNoOptions, show: true,
       rules: {
-        dependsOn: ['2'], // only show this question if the following are visible
+        dependsOn: ['question1'], // only show this question if the following are visible
         choiceRules: {
           '2': ['Y', 'U'],  // only show if question '3' has a value of 'N'
         },
       }
     },
     {
-      key: '4',
+      key: 'question4',
       text: 'fourth question', 
       choice: '', 
       options: yesNoOptions,

@@ -1,9 +1,6 @@
+
 <section class="container-fluid">
-</section>
-
-
-  <!-- 
-  <div *ngIf="questions[0].show || questions[0].show">
+  <div *ngIf="questions.showQuestion('question1')">
     <div class="row">
       <div class="col-md-7 text-right">
         <br />
@@ -11,10 +8,9 @@
       </div>
       <div class="col-md-5 ">
         <br />
-        <mat-radio-group class="ans-radio-group" [(ngModel)]="questions[0].choice" (change)="onChange()">
+        <mat-radio-group class="ans-radio-group" [(ngModel)]="questionChoices['question1']" (change)="onChange($event)">
           <mat-radio-button class="ans-radio-button"
-           (change)="onChange()"
-            *ngFor="let answers of questions[0].options" [value]="answers.key">
+            *ngFor="let answers of questions.getOptions('question1')" [value]="answers.key">
             {{ answers.value }}
           </mat-radio-button>
         </mat-radio-group>
@@ -22,83 +18,23 @@
     </div>
   </div>
 
-  <div *ngIf="questions[1].show || questions[1].show">
+  <div *ngIf="questions.showQuestion('question2')">
     <div class="row">
       <div class="col-md-7 text-right">
         <br />
-        <label class="question">
-          <span>
-            (Observe): Is this
-            house or apartment eligible?
-          </span>
-        </label>
+        <label class="question">(Observe): Does this building ({{questions.getStringValue('buildingType')}}) have an elevator?</label>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5 ">
         <br />
-        <mat-radio-group class="ans-radio-group" [(ngModel)]="questions[1].choice" (change)="onChange()">
-          <mat-radio-button class="ans-radio-button" (change)="onChange()" *ngFor="let answers of questions[1].options"
-            [value]="answers.key">
+        <mat-radio-group class="ans-radio-group" [(ngModel)]="questionChoices.question2" (change)="onChange($event)">
+          <mat-radio-button class="ans-radio-button"
+            *ngFor="let answers of questions.getOptions('question2')" [value]="answers.key">
             {{ answers.value }}
           </mat-radio-button>
         </mat-radio-group>
       </div>
     </div>
   </div>
-  
-  <div *ngIf="questions[2].show">
-    <div class="row">
-      <div class="col-md-7 text-right">
-        <br />
-        <label id="radAnswer">
-          <span class="question">
-            (Observe): Is this
-          house or apartment?
-          </span>
-        </label>
-      </div>
-      <div class="col-md-5">
-        <br />
-        <mat-radio-group class="ans-radio-group" [(ngModel)]="questions[2].choice " (change)="onChange()">
-          <mat-radio-button class="ans-radio-button" aria-labelledby="radAnswer"
-            (change)="onChange()" *ngFor="let answers of questions[2].options" [value]="answers.key">
-            {{ answers.value }}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
-    </div>
-  </div>
-  
-  <div class="row" *ngIf="questions[3].show">
-    <div class="col-md-7 text-right">
-      <br />
-      <label id="TenQues">
-        <span class="label label-default" style="font-weight:bold;font-size:medium">
-          <span class="question">
-            Is this {{dwellingType}} occupied by the owner or its rented?
-          </span>
 
-        </span>
-      </label>
-    </div>
-    <div class="col-md-5">
-      <br />
-      <mat-radio-group class="ans-radio-group" aria-labelledby="TenQues" [(ngModel)]="questions[3].choice"
-        (change)="onChange()">
-        <mat-radio-button class="ans-radio-button" #button name="lblTenQues" (change)="onChange()"
-          *ngFor="let answers of questions[3].options" [value]="answers.key">
-          {{ answers.value }}
-        </mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-  <div>
-    <ul>
-      <li>{{questions[0].choice}}</li>
-      <li>{{questions[1].choice}}</li>
-      <li>{{questions[2].choice}}</li>
-      <li>{{questions[3].choice}}</li>
-    </ul>
-  </div>
+  <div>{{diagnostics}}</div>
 </section> 
-
- -->
